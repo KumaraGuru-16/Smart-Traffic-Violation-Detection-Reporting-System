@@ -55,7 +55,8 @@ API.interceptors.response.use(
 // Health check function
 export const checkBackendHealth = async () => {
   try {
-    const response = await axios.get("http://localhost:8000/health", {
+    const healthUrl = `${API_BASE_URL.replace("/api", "")}/health`;
+    const response = await axios.get(healthUrl, {
       timeout: 5000,
     });
     return { isAlive: true, data: response.data };
