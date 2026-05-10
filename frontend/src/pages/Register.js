@@ -63,18 +63,16 @@ function Register() {
     setLoading(true);
 
     try {
-      const response = await API.post("/auth/register", {
+      const res = await API.post("/auth/register", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
         role: formData.role,
       });
 
-      if (response.status === 201) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        navigate("/dashboard");
-      }
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      navigate("/dashboard");
     } catch (err) {
       if (err.isNetworkError || !err.response) {
         setError("Cannot connect to server. Make sure the backend is running (npm start in backend folder).");
