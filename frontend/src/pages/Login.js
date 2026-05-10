@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import API from "../services/api";
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const [form, setForm] = useState({
     email: "",
     password: "",
