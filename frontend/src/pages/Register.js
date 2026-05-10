@@ -19,10 +19,10 @@ function Register() {
   useEffect(() => {
     const checkBackend = async () => {
       try {
-        await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
-          method: "POST",
+        const baseUrl = (process.env.REACT_APP_API_URL || '').replace('/api', '').replace(/\/$/, '');
+        await fetch(`${baseUrl}/health`, {
+          method: "GET",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: "test", password: "test" }),
         });
         // If we get ANY response, backend is running
         setBackendOnline(true);
